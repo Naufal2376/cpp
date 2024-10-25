@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body></body>
+  <script>
+    // alert("kamu mau jadi pacarku")
+
+    // Loop akan terus berjalan jika user memilih "Cancel" (tolak)
+    let mauPacar = false
+    let countReject = 0 // Penghitung untuk menolak
+
+    while (!mauPacar) {
+      mauPacar = confirm("Kamu mau ga, jadi pacarku?")
+
+      if (!mauPacar) {
+        countReject++ // Tambah penghitung setiap kali menolak
+
+        if (countReject === 2) {
+          alert("Kok kamu gitu sih🥹")
+          countReject = 0 // Reset penghitung agar pengulangan dimulai dari awal lagi
+        }
+      }
+    }
+
+    if (mauPacar) {
+      alert("Selamat! Kamu jadi pacarku 😘💕")
+    }
+  </script>
+</html>
