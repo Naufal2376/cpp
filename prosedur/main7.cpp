@@ -17,7 +17,7 @@ int main() {
 }
 
 void hariBesok(int hari) {
-    int hariBesok = (hari % 7) + 1; // Menghitung hari berikutnya
+    int hariBesok = (hari % 7) + 1;
 
     cout << "Hari besok adalah: ";
     if(hariBesok == 1) cout << "Senin";

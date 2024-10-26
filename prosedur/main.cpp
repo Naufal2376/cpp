@@ -5,6 +5,7 @@ void hitungGenap(int n, int *hasil);
 
 int main(){
     int n;
+    int hasil = 0;
 
     cout << "Masukkan angka: ";
     cin >> n;
