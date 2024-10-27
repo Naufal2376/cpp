@@ -1,52 +1,40 @@
 #include <iostream>
-#include <sstream>
 using namespace std;
 
-bool isKabisat(int tahun) {
-    return (tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0);
-}
-
-int jumlahHariDalamBulan(int bulan, int tahun) {
-    switch(bulan) {
-        case 4: case 6: case 9: case 11: return 30;
-        case 2: return isKabisat(tahun) ? 29 : 28;
-        default: return 31;
-    }
-}
-
-int hitungJarakHari(int dd, int mm, int yyyy) {
+void jarakDari1900(char tanggal[]) {
+    int dd = (tanggal[0] - '0') * 10 + (tanggal[1] - '0');
+    int mm = (tanggal[3] - '0') * 10 + (tanggal[4] - '0');
+    int yyyy = (tanggal[6] - '0') * 1000 + (tanggal[7] - '0') * 100 + (tanggal[8] - '0') * 10 + (tanggal[9] - '0');
+    
     int hari = 1, bulan = 1, tahun = 1900;
     int totalHari = 0;
 
     while (tahun < yyyy) {
-        totalHari += isKabisat(tahun) ? 366 : 365;
+        bool kabisat = (tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0);
+        totalHari += kabisat ? 366 : 365;
         tahun++;
     }
 
     while (bulan < mm) {
-        totalHari += jumlahHariDalamBulan(bulan, tahun);
+        int hariBulan;
+        if (bulan == 2) {
+            hariBulan = ((tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0)) ? 29 : 28;
+        } else if (bulan == 4 || bulan == 6 || bulan == 9 || bulan == 11) {
+            hariBulan = 30;
+        } else {
+            hariBulan = 31;
+        }
+        totalHari += hariBulan;
         bulan++;
     }
 
     totalHari += dd - hari;
 
-    return totalHari;
-}
-
-// Prosedur utama
-void jarakDari1900(string tanggal) {
-    int dd, mm, yyyy;
-    char delimiter;
-
-    stringstream ss(tanggal);
-    ss >> dd >> delimiter >> mm >> delimiter >> yyyy;
-
-    int jarakHari = hitungJarakHari(dd, mm, yyyy);
-    cout << "Jarak hari dari 1-1-1900 ke " << tanggal << " adalah: " << jarakHari << " hari" << endl;
+    cout << "Jarak hari dari 1-1-1900 ke " << tanggal << " adalah: " << totalHari << " hari" << endl;
 }
 
 int main() {
-    string tanggal;
+    char tanggal[11];
 
     cout << "Masukkan tanggal (dd-mm-yyyy): ";
     cin >> tanggal;
