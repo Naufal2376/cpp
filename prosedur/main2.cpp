@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-void hitungGenap(int n, int *hasil);
 void hitungRata(float &rata);
 
 int main(){
