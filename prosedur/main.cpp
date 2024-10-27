@@ -7,16 +7,14 @@ int main(){
     int n;
     int hasil = 0;
 
-    cout << "Masukkan angka: ";
+    cout << "Masukkan jumlah bilangan genap: ";
     cin >> n;
     hitungGenap(n, &hasil);
     cout << "Hasilnya: " << hasil << endl;
 }
 
 void hitungGenap(int n, int *hasil){
-    for(int i = 1; i <= n; i++){
-        if(i % 2 == 0){
-            *hasil += i;
-        }
+    for(int i = 0; i < n; i++){
+        *hasil += i * 2;
     }
 }

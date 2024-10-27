@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 void hitungJam(int waktu, int p);
@@ -24,6 +23,17 @@ int main() {
     hitungJam(waktu, p);
 }
 
+void tampilkanWaktu(int jam, int menit, int detik) {
+    if (jam < 10) cout << "0";
+    cout << jam << ":";
+
+    if (menit < 10) cout << "0";
+    cout << menit << ":";
+
+    if (detik < 10) cout << "0";
+    cout << detik << endl;
+}
+
 void hitungJam(int waktu, int p) {
     int jam, menit, detik;
 
@@ -31,10 +41,8 @@ void hitungJam(int waktu, int p) {
     menit = (waktu % 3600) / 60;
     detik = (waktu % 3600) % 60;
 
-    cout << "Waktu sekarang: " 
-         << setw(2) << setfill('0') << jam << ":"
-         << setw(2) << setfill('0') << menit << ":"
-         << setw(2) << setfill('0') << detik << endl;
+    cout << "Waktu sekarang: ";
+    tampilkanWaktu(jam, menit, detik);
 
     waktu -= (p * 60);
 
@@ -42,8 +50,6 @@ void hitungJam(int waktu, int p) {
     menit = (waktu % 3600) / 60;
     detik = (waktu % 3600) % 60;
 
-    cout << "Waktu setelah pengurangan menit: " 
-         << setw(2) << setfill('0') << jam << ":"
-         << setw(2) << setfill('0') << menit << ":"
-         << setw(2) << setfill('0') << detik << endl;
+    cout << "Waktu setelah pengurangan menit: ";
+    tampilkanWaktu(jam, menit, detik);
 }
