@@ -1,54 +1,32 @@
 #include <iostream>
-#include <sstream>
-#include <iomanip>
 using namespace std;
 
-bool isKabisat(int tahun) {
-    return (tahun % 4 == 0 && tahun % 100 != 0) || (tahun % 400 == 0);
-}
-
-void TanggalSebelumnya(string &tanggal) {
-    int dd, mm, yyyy;
-    
-    char delimiter;
-    stringstream ss(tanggal);
-    ss >> dd >> delimiter >> mm >> delimiter >> yyyy;
-
-    int jumlahHari[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if (isKabisat(yyyy)) {
-        jumlahHari[1] = 29;
-    }
-
-    if (mm == 1) {
-        mm = 12;
-        yyyy--;
-        dd = 31;
-    } else {
-        if (dd == 1) {
-            mm--;
-            if (mm == 0) {
-                mm = 12;
-                yyyy--;
-            }
-            dd = jumlahHari[mm - 1];
-        } else {
-            dd--;
-        }
-    }
-
-    cout << "Tanggal sebelumnya adalah: " 
-         << setw(2) << setfill('0') << dd << "-"
-         << setw(2) << setfill('0') << mm << "-"
-         << yyyy << endl;
-}
+void hariBesok(int hari);
+void hariKemarin(int hari);
 
 int main() {
-    string tanggal;
+    int hari;
 
-    cout << "Masukkan tanggal (dd-mm-yyyy): ";
-    cin >> tanggal;
+    cout << "Masukkan hari (1 untuk Senin, 2 untuk Selasa, ..., 7 untuk Minggu): ";
+    cin >> hari;
 
-    TanggalSebelumnya(tanggal);
-    return 0;
+    if(hari < 1 || hari > 7) {
+        cout << "Input tidak valid. Masukkan angka antara 1 dan 7." << endl;
+    } else {
+        hariKemarin(hari);
+    }
+}
+
+void hariKemarin(int hari) {
+    int hariKemarin = (hari == 1) ? 7 : hari - 1;
+
+    cout << "Hari kemarin adalah: ";
+    if(hariKemarin == 1) cout << "Senin";
+    else if(hariKemarin == 2) cout << "Selasa";
+    else if(hariKemarin == 3) cout << "Rabu";
+    else if(hariKemarin == 4) cout << "Kamis";
+    else if(hariKemarin == 5) cout << "Jumat";
+    else if(hariKemarin == 6) cout << "Sabtu";
+    else if(hariKemarin == 7) cout << "Minggu";
+    cout << endl;
 }
