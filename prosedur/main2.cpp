@@ -1,26 +1,27 @@
 #include <iostream>
 using namespace std;
 
-void hitungRata(float &rata);
+void hitungRata(int n, float *rata);
 
 int main(){
     float rata;
+    int n;
+    cout << "masukkan angka: ";
+    cin >> n;
     
-    hitungRata(rata);
+    hitungRata(n, &rata);
     cout << "Rata-rata: " << rata << endl;
 }
 
-void hitungRata(float &rata){
+void hitungRata(int n, float *rata){
     float total = 0, jumlah = 0;
-    int n2;
+    int n;
     do {
-        cout << "Masukkan angka: ";
-        cin >> n2;
-        if (n2 != 9999){
-            total += n2;
+        if (n != 9999){
+            total += n;
             jumlah++;
         }
-    } while (n2 != 9999);
+    } while (n != 9999);
 
     if (jumlah > 0){
         rata = total / jumlah;

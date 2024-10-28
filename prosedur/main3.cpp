@@ -1,22 +1,38 @@
 #include <iostream>
 using namespace std;
 
-void cariTerkecil(int &kecil);
+void cariTerkecil(int *kecil);
 
-int main(){
+int main() {
     int kecil;
-    
-    cariTerkecil(kecil);
+
+    cout << "Masukkan angka: ";
+    cin >> kecil;
+
+    if (kecil == 9999) {
+        cout << "Tidak ada angka yang dimasukkan." << endl;
+        return 0;
+    }
+
+    cariTerkecil(&kecil);
     cout << "Nilai terkecil: " << kecil << endl;
+
+    return 0;
 }
 
-void cariTerkecil(int &kecil){
+void cariTerkecil(int *kecil) {
     int angka;
-    do {
+
+    while (true) {
         cout << "Masukkan angka: ";
         cin >> angka;
-        if (angka < kecil){
-            kecil = angka;
+
+        if (angka == 9999) {
+            break;
         }
-    } while (angka != 9999);
+
+        if (angka < *kecil) {
+            *kecil = angka;
+        }
+    }
 }

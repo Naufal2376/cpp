@@ -1,15 +1,33 @@
 #include <iostream>
 using namespace std;
 
-void TanggalSebelumnya(char tanggal[]) {
-    int dd = (tanggal[0] - '0') * 10 + (tanggal[1] - '0');
-    int mm = (tanggal[3] - '0') * 10 + (tanggal[4] - '0');
-    int yyyy = (tanggal[6] - '0') * 1000 + (tanggal[7] - '0') * 100 + (tanggal[8] - '0') * 10 + (tanggal[9] - '0');
+void TanggalSebelumnya(int dd, int mm, int yyyy) {
+    int hariBulan;
+    
+    bool kabisat = (yyyy % 4 == 0 && yyyy % 100 != 0) || (yyyy % 400 == 0);
 
-    int jumlahHari[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-
-    if ((yyyy % 4 == 0 && yyyy % 100 != 0) || (yyyy % 400 == 0)) {
-        jumlahHari[1] = 29;
+    switch (mm) {
+        case 1: // Januari
+        case 3: // Maret
+        case 5: // Mei
+        case 7: // Juli
+        case 8: // Agustus
+        case 10: // Oktober
+        case 12: // Desember
+            hariBulan = 31;
+            break;
+        case 4: // April
+        case 6: // Juni
+        case 9: // September
+        case 11: // November
+            hariBulan = 30;
+            break;
+        case 2: // Februari
+            hariBulan = kabisat ? 29 : 28;
+            break;
+        default:
+            cout << "Bulan tidak valid!" << endl;
+            return;
     }
 
     if (dd == 1) { 
@@ -18,27 +36,23 @@ void TanggalSebelumnya(char tanggal[]) {
             mm = 12;
             yyyy--;
         }
-        dd = jumlahHari[mm - 1];
+        dd = hariBulan;
     } else {
         dd--;
     }
 
     cout << "Tanggal sebelumnya adalah: ";
-    if (dd < 10) cout << "0";
     cout << dd << "-";
-    
-    if (mm < 10) cout << "0";
     cout << mm << "-";
-    
     cout << yyyy << endl;
 }
 
 int main() {
-    char tanggal[11];
+    int dd, mm, yyyy;
 
-    cout << "Masukkan tanggal (dd-mm-yyyy): ";
-    cin >> tanggal;
+    cout << "Masukkan tanggal (dd mm yyyy): ";
+    cin >> dd >> mm >> yyyy;
 
-    TanggalSebelumnya(tanggal);
+    TanggalSebelumnya(dd, mm, yyyy);
     return 0;
 }

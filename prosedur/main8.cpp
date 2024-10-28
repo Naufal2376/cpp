@@ -1,7 +1,6 @@
 #include <iostream>
 using namespace std;
 
-void hariBesok(int hari);
 void hariKemarin(int hari);
 
 int main() {

@@ -1,17 +1,17 @@
 #include <iostream>
 using namespace std;
 
-void hitungWaktuKurangKasus(int &hh, int &mm, int ss, int p, int &hh_baru, int &mm_baru, int &ss_baru) {
+void hitungWaktuKurangKasus(int hh, int mm, int ss, int p, int *hh_baru, int *mm_baru, int *ss_baru) {
     if (p > mm) {
         hh = (hh - 1 + 24) % 24;
         int selisih = p - mm;
-        mm_baru = 60 - selisih;
+        *mm_baru = 60 - selisih;
     } else {
-        mm_baru = mm - p;
+        *mm_baru = mm - p;
     }
 
-    ss_baru = ss;
-    hh_baru = hh;
+    *ss_baru = ss;
+    *hh_baru = hh;
 }
 
 int main() {
@@ -27,7 +27,7 @@ int main() {
     cout << "Masukkan jumlah menit untuk dikurangi (p): ";
     cin >> p;
 
-    hitungWaktuKurangKasus(hh, mm, ss, p, hh_baru, mm_baru, ss_baru);
+    hitungWaktuKurangKasus(hh, mm, ss, p, &hh_baru, &mm_baru, &ss_baru);
 
     cout << "Waktu setelah dikurangi: " << hh_baru << ":" << mm_baru << ":" << ss_baru << endl;
 
