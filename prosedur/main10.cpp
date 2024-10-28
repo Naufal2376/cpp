@@ -2,7 +2,6 @@
 using namespace std;
 
 void jarakDari1900(int dd, int mm, int yyyy) {
-    // Cek jika tanggal sebelum 1 Januari 1900
     if (yyyy < 1900 || (yyyy == 1900 && mm == 1 && dd < 1)) {
         cout << "Tanggal tidak valid. Harap masukkan tanggal setelah 1-1-1900." << endl;
         return;
